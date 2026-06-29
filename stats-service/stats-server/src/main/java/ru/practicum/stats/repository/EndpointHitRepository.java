@@ -12,16 +12,17 @@ import java.util.List;
 public interface EndpointHitRepository extends JpaRepository<EndpointHit, Long> {
 
     @Query("""
-    SELECT new ru.practicum.stats.dto.ViewStatsDto(
-    h.app,
-    h.uri,
-    COUNT(h.id)
-    )
-    FROM EndpointHit h
-    WHERE h.timestamp BETWEEN :start AND :end
-    AND (:uris IS NULL OR h.uri IN :uris)
-    GROUP BY h.app, h.uri ORDER BY COUNT(h.id) DESC
-    """)
+        SELECT new ru.practicum.stats.dto.ViewStatsDto(
+            h.app,
+            h.uri,
+            COUNT(h.id)
+        )
+        FROM EndpointHit h
+        WHERE h.timestamp BETWEEN :start AND :end
+          AND (:uris IS NULL OR h.uri IN :uris)
+        GROUP BY h.app, h.uri
+        ORDER BY COUNT(h.id) DESC
+        """)
     List<ViewStatsDto> getStats(
             @Param("start") LocalDateTime start,
             @Param("end") LocalDateTime end,
@@ -29,16 +30,17 @@ public interface EndpointHitRepository extends JpaRepository<EndpointHit, Long> 
     );
 
     @Query("""
-    SELECT new ru.practicum.stats.dto.ViewStatsDto(
-    h.app,
-    h.uri,
-    COUNT(DISTINCT h.ip)
-    )
-    FROM EndpointHit h
-    WHERE h.timestamp BETWEEN :start AND :end
-    AND (:uris IS NULL OR h.uri IN :uris)
-    GROUP BY h.app, h.uri ORDER BY COUNT(h.ip) DESC
-    """)
+        SELECT new ru.practicum.stats.dto.ViewStatsDto(
+            h.app,
+            h.uri,
+            COUNT(DISTINCT h.ip)
+        )
+        FROM EndpointHit h
+        WHERE h.timestamp BETWEEN :start AND :end
+          AND (:uris IS NULL OR h.uri IN :uris)
+        GROUP BY h.app, h.uri
+        ORDER BY COUNT(h.ip) DESC
+        """)
     List<ViewStatsDto> getUniqueStats(
             @Param("start") LocalDateTime start,
             @Param("end") LocalDateTime end,
