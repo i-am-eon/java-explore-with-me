@@ -1,0 +1,47 @@
+package ru.practicum.ewm.dto;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import ru.practicum.ewm.model.Location;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class NewEventDto {
+
+    @NotBlank(message = "Аннотация обязательна")
+    private String annotation;
+
+    @NotBlank(message = "Описание обязательно")
+    private String description;
+
+    @NotNull(message = "Дата события обязательна")
+    @Future(message = "Дата события должна быть в будущем")
+    private LocalDateTime eventDate;
+
+    private Boolean paid;
+
+    @PositiveOrZero(message = "Количество участников не может быть отрицательным")
+    private Integer participantLimit;
+
+    private Boolean requestModeration;
+
+    @NotBlank(message = "Название события обязательно")
+    private String title;
+
+    @NotNull(message = "Категория обязательна")
+    private Long category;
+
+    @Valid
+    @NotNull(message = "Локация обязательна")
+    private Location location;
+}
