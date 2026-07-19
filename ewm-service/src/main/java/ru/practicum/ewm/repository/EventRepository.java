@@ -5,7 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import ru.practicum.ewm.model.Event;
-import ru.practicum.ewm.model.enums.EventSort;
 import ru.practicum.ewm.model.enums.EventState;
 
 import java.time.LocalDateTime;

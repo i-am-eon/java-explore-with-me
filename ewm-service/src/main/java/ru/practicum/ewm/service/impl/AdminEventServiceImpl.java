@@ -41,7 +41,7 @@ public class AdminEventServiceImpl implements AdminEventService {
     public List<EventFullDto> search(List<Long> users, List<EventState> states, List<Long> categories,
                                      LocalDateTime rangeStart, LocalDateTime rangeEnd, int from, int size) {
 
-        if(rangeStart != null && rangeEnd != null && rangeStart.isAfter(rangeEnd)) {
+        if (rangeStart != null && rangeEnd != null && rangeStart.isAfter(rangeEnd)) {
             throw new ValidationException("Некорректные параметры даты.");
         }
 
@@ -98,7 +98,7 @@ public class AdminEventServiceImpl implements AdminEventService {
 
         if (request.getEventDate() != null) {
 
-            if(request.getEventDate().isBefore(LocalDateTime.now().plusHours(1))) {
+            if (request.getEventDate().isBefore(LocalDateTime.now().plusHours(1))) {
                 throw new ValidationException("Дата события должна быть не ранее чем через час.");
             }
 
@@ -129,13 +129,13 @@ public class AdminEventServiceImpl implements AdminEventService {
             event.setCategory(category);
         }
 
-        if(request.getStateAction() != null) {
+        if (request.getStateAction() != null) {
 
-            switch(request.getStateAction()) {
+            switch (request.getStateAction()) {
 
                 case PUBLISH_EVENT -> {
 
-                    if(event.getState() != EventState.PENDING) {
+                    if (event.getState() != EventState.PENDING) {
                         throw new ConflictException("Публиковать событие можно только со статусом PENDING.");
                     }
 
@@ -145,7 +145,7 @@ public class AdminEventServiceImpl implements AdminEventService {
 
                 case REJECT_EVENT -> {
 
-                    if(event.getState() == EventState.PUBLISHED) {
+                    if (event.getState() == EventState.PUBLISHED) {
                         throw new ConflictException("Нельзя отклонить опубликованное событие.");
                     }
 

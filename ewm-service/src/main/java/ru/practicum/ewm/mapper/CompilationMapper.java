@@ -12,7 +12,7 @@ public class CompilationMapper {
 
     public static CompilationDto toCompilationDto(Compilation compilation) {
 
-        if(compilation == null) {
+        if (compilation == null) {
             return null;
         }
 
@@ -30,7 +30,7 @@ public class CompilationMapper {
 
     public static Compilation toCompilation(NewCompilationDto newCompilationDto, Set<Event> events) {
 
-        if(newCompilationDto == null || events == null) {
+        if (newCompilationDto == null || events == null) {
             return null;
         }
 

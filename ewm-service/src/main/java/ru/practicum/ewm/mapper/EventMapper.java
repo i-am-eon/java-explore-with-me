@@ -56,7 +56,7 @@ public class EventMapper {
 
     public static Event toEvent(NewEventDto newEventDto, Category category, User initiator) {
 
-        if(newEventDto == null || category == null || initiator == null) {
+        if (newEventDto == null || category == null || initiator == null) {
             return null;
         }
 
