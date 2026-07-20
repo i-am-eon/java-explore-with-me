@@ -19,6 +19,5 @@ public class NewCompilationDto {
 
     private Boolean pinned;
 
-    @NotEmpty(message = "Список событий не должен быть пустым")
     private Set<Long> events;
 }

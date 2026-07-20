@@ -145,8 +145,8 @@ public class AdminEventServiceImpl implements AdminEventService {
 
                 case REJECT_EVENT -> {
 
-                    if (event.getState() == EventState.PUBLISHED) {
-                        throw new ConflictException("Нельзя отклонить опубликованное событие.");
+                    if (event.getState() != EventState.PENDING) {
+                        throw new ConflictException("Отклонить можно только событие в состоянии PENDING.");
                     }
 
                     event.setState(EventState.CANCELED);
