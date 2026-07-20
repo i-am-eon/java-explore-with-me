@@ -3,7 +3,6 @@ package ru.practicum.ewm.mapper;
 import ru.practicum.ewm.dto.*;
 import ru.practicum.ewm.model.Category;
 import ru.practicum.ewm.model.Event;
-import ru.practicum.ewm.model.Location;
 import ru.practicum.ewm.model.User;
 
 public class EventMapper {

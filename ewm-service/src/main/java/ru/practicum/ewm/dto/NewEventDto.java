@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.ewm.model.Location;
 
 @Data
 @NoArgsConstructor

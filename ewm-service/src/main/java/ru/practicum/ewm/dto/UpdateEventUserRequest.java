@@ -6,7 +6,6 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.practicum.ewm.model.Location;
 import ru.practicum.ewm.model.enums.UserStateAction;
 
 import java.time.LocalDateTime;
