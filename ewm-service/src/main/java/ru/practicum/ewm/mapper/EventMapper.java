@@ -3,6 +3,7 @@ package ru.practicum.ewm.mapper;
 import ru.practicum.ewm.dto.*;
 import ru.practicum.ewm.model.Category;
 import ru.practicum.ewm.model.Event;
+import ru.practicum.ewm.model.Location;
 import ru.practicum.ewm.model.User;
 
 public class EventMapper {
@@ -27,7 +28,7 @@ public class EventMapper {
         eventFullDto.setTitle(event.getTitle());
         eventFullDto.setCategory(CategoryMapper.toCategoryDto(event.getCategory()));
         eventFullDto.setInitiator(UserMapper.toUserShortDto(event.getInitiator()));
-        eventFullDto.setLocation(event.getLocation());
+        eventFullDto.setLocation(LocationMapper.toDto(event.getLocation()));
         eventFullDto.setConfirmedRequests(confirmedRequests != null ? confirmedRequests : 0);
         eventFullDto.setViews(views != null ? views : 0);
 
@@ -70,7 +71,7 @@ public class EventMapper {
         event.setTitle(newEventDto.getTitle());
         event.setCategory(category);
         event.setInitiator(initiator);
-        event.setLocation(newEventDto.getLocation());
+        event.setLocation(LocationMapper.toEntity(newEventDto.getLocation()));
 
         return event;
     }

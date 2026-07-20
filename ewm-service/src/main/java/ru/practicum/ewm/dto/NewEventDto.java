@@ -1,5 +1,6 @@
 package ru.practicum.ewm.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
@@ -26,6 +27,7 @@ public class NewEventDto {
 
     @NotNull(message = "Дата события обязательна")
     @Future(message = "Дата события должна быть в будущем")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime eventDate;
 
     private Boolean paid;
@@ -43,5 +45,5 @@ public class NewEventDto {
 
     @Valid
     @NotNull(message = "Локация обязательна")
-    private Location location;
+    private LocationDto location;
 }

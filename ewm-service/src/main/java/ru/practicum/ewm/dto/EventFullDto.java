@@ -1,6 +1,5 @@
 package ru.practicum.ewm.dto;
 
-import ru.practicum.ewm.model.Location;
 import ru.practicum.ewm.model.enums.EventState;
 
 import java.time.LocalDateTime;
@@ -27,7 +26,7 @@ public class EventFullDto {
     private String title;
     private CategoryDto category;
     private UserShortDto initiator;
-    private Location location;
+    private LocationDto location;
     private Long confirmedRequests;
     private Long views;
 }

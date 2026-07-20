@@ -12,6 +12,7 @@ import ru.practicum.ewm.exception.ConflictException;
 import ru.practicum.ewm.exception.NotFoundException;
 import ru.practicum.ewm.exception.ValidationException;
 import ru.practicum.ewm.mapper.EventMapper;
+import ru.practicum.ewm.mapper.LocationMapper;
 import ru.practicum.ewm.model.Category;
 import ru.practicum.ewm.model.Constants;
 import ru.practicum.ewm.model.Event;
@@ -193,7 +194,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         }
 
         if (request.getLocation() != null) {
-            event.setLocation(request.getLocation());
+            event.setLocation(LocationMapper.toEntity(request.getLocation()));
         }
 
         Event saveEvent = eventRepository.save(event);
