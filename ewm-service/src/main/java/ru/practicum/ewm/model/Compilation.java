@@ -3,7 +3,6 @@ package ru.practicum.ewm.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
