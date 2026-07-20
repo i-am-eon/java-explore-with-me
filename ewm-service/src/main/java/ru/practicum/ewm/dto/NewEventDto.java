@@ -2,10 +2,7 @@ package ru.practicum.ewm.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
 
@@ -19,9 +16,11 @@ import lombok.NoArgsConstructor;
 public class NewEventDto {
 
     @NotBlank(message = "Аннотация обязательна")
+    @Size(min = 20, max = 2000, message = "Аннотация должна быть от 20 до 2000 символов")
     private String annotation;
 
     @NotBlank(message = "Описание обязательно")
+    @Size(min = 20, max = 7000, message = "Описание должно быть от 20 до 7000 символов")
     private String description;
 
     @NotNull(message = "Дата события обязательна")
@@ -37,6 +36,7 @@ public class NewEventDto {
     private Boolean requestModeration;
 
     @NotBlank(message = "Название события обязательно")
+    @Size(min = 3, max = 120, message = "Название должно быть от 3 до 120 символов")
     private String title;
 
     @NotNull(message = "Категория обязательна")

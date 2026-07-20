@@ -25,7 +25,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             AND (:categories IS NULL OR e.category.id IN :categories)
             AND (:rangeStart IS NULL OR e.eventDate >= :rangeStart)
             AND (:rangeEnd IS NULL OR e.eventDate <= :rangeEnd)
-            AND (e.state = ru.practicum.ewm.model.enums.EventState.PUBLISHED)
     """)
     Page<Event> search(List<Long> users, List<EventState> states, List<Long> categories,
                        LocalDateTime rangeStart, LocalDateTime rangeEnd, Pageable pageable);

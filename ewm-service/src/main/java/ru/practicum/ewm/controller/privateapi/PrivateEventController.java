@@ -2,6 +2,7 @@ package ru.practicum.ewm.controller.privateapi;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.ewm.dto.*;
 import ru.practicum.ewm.service.ParticipationRequestService;
@@ -38,6 +39,7 @@ public class PrivateEventController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public EventFullDto create(@PathVariable Long userId, @Valid @RequestBody NewEventDto newEventDto) {
         return privateEventService.create(userId, newEventDto);
     }

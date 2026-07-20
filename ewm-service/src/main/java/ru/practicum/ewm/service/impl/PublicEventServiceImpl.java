@@ -63,7 +63,7 @@ public class PublicEventServiceImpl implements PublicEventService {
         }
 
         if (rangeEnd == null) {
-            rangeEnd = Constants.STATS_START;
+            rangeEnd = LocalDateTime.now().plusYears(100);
         }
 
         Pageable pageable;

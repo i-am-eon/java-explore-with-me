@@ -1,6 +1,7 @@
 package ru.practicum.ewm.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -66,6 +67,17 @@ public class ErrorHandler {
                         .map(error -> error.getField() + ": " + error.getDefaultMessage())
                         .toList()
         );
+        return apiError;
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiError handleNotReadable(HttpMessageNotReadableException e) {
+        ApiError apiError = new ApiError();
+        apiError.setMessage(e.getMostSpecificCause().getMessage());
+        apiError.setReason("Ошибка чтения JSON");
+        apiError.setStatus(HttpStatus.BAD_REQUEST.name());
+        apiError.setTimestamp(LocalDateTime.now());
         return apiError;
     }
 }

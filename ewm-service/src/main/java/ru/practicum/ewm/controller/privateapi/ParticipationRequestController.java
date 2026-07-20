@@ -1,6 +1,7 @@
 package ru.practicum.ewm.controller.privateapi;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.ewm.dto.ParticipationRequestDto;
 import ru.practicum.ewm.service.ParticipationRequestService;
@@ -15,6 +16,7 @@ public class ParticipationRequestController {
     private final ParticipationRequestService participationRequestService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ParticipationRequestDto create(@PathVariable("userId") Long userId, @RequestParam("eventId") Long eventId) {
         return participationRequestService.create(userId, eventId);
     }

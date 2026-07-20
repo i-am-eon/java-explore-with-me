@@ -33,11 +33,11 @@ public class AdminEventController {
             List<Long> categories,
 
             @RequestParam(required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             LocalDateTime rangeStart,
 
             @RequestParam(required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             LocalDateTime rangeEnd,
 
             @RequestParam(defaultValue = "0")
