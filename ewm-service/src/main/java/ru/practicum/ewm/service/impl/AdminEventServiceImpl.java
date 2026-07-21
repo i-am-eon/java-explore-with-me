@@ -54,6 +54,14 @@ public class AdminEventServiceImpl implements AdminEventService {
         states = (states == null || states.isEmpty()) ? null : states;
         categories = (categories == null || categories.isEmpty()) ? null : categories;
 
+        if (rangeStart == null) {
+            rangeStart = Constants.STATS_START;
+        }
+
+        if (rangeEnd == null) {
+            rangeEnd = LocalDateTime.now().plusYears(100);
+        }
+
         Pageable pageable = PageRequest.of(from / size, size);
 
         Page<Event> events = eventRepository.search(users, states, categories, rangeStart, rangeEnd, pageable);

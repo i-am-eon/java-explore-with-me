@@ -16,10 +16,10 @@ public class ParticipationRequestMapper {
         ParticipationRequestDto participationRequestDto = new ParticipationRequestDto();
         participationRequestDto.setId(participationRequest.getId());
 
-        participationRequestDto.setEventId(participationRequest.getEvent() != null
+        participationRequestDto.setEvent(participationRequest.getEvent() != null
                 ? participationRequest.getEvent().getId() : null);
 
-        participationRequestDto.setRequesterId(participationRequest.getRequester() != null
+        participationRequestDto.setRequester(participationRequest.getRequester() != null
                 ? participationRequest.getRequester().getId() : null);
 
         participationRequestDto.setStatus(participationRequest.getStatus());

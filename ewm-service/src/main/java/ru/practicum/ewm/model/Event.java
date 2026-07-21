@@ -15,7 +15,10 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 2000)
     private String annotation;
+
+    @Column(length = 7000)
     private String description;
     private LocalDateTime createdOn;
     private LocalDateTime eventDate;
@@ -28,6 +31,7 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private EventState state;
 
+    @Column(length = 120)
     private String title;
 
     @ManyToOne

@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import ru.practicum.ewm.model.Event;
 import ru.practicum.ewm.model.enums.EventState;
 
@@ -23,11 +24,16 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             WHERE (:users IS NULL OR e.initiator.id IN :users)
             AND (:states IS NULL OR e.state IN :states)
             AND (:categories IS NULL OR e.category.id IN :categories)
-            AND (:rangeStart IS NULL OR e.eventDate >= :rangeStart)
-            AND (:rangeEnd IS NULL OR e.eventDate <= :rangeEnd)
+            AND (e.eventDate >= :rangeStart)
+            AND (e.eventDate <= :rangeEnd)
     """)
-    Page<Event> search(List<Long> users, List<EventState> states, List<Long> categories,
-                       LocalDateTime rangeStart, LocalDateTime rangeEnd, Pageable pageable);
+    Page<Event> search(
+            @Param("users") List<Long> users,
+            @Param("states") List<EventState> states,
+            @Param("categories") List<Long> categories,
+            @Param("rangeStart") LocalDateTime rangeStart,
+            @Param("rangeEnd") LocalDateTime rangeEnd,
+            Pageable pageable);
 
     @Query("""
             SELECT e
@@ -50,7 +56,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
                         AND pr.status = ru.practicum.ewm.model.enums.RequestStatus.CONFIRMED
                     ) < e.participantLimit
                 )
-            """)
+    """)
     Page<Event> getEvents(String text, List<Long> categories, Boolean paid, LocalDateTime rangeStart,
                           LocalDateTime rangeEnd, Boolean onlyAvailable, Pageable pageable);
+
+    boolean existsByCategoryId(Long categoryId);
 }

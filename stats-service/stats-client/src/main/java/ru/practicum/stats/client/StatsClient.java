@@ -43,15 +43,11 @@ public class StatsClient {
             builder.queryParam("uris", uris);
         }
 
-        String url = builder
-                .encode()
-                .toUriString();
-
         ResponseEntity<List<ViewStatsDto>> response = restTemplate.exchange(
-                url,
+                builder.build().toUri(),
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<>() {
+                new ParameterizedTypeReference<List<ViewStatsDto>>() {
                 }
         );
 
