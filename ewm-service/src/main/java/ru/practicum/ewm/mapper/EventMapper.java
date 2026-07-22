@@ -58,33 +58,34 @@ public class EventMapper {
             return null;
         }
 
-        return Event.builder()
-                .annotation(newEventDto.getAnnotation())
-                .description(newEventDto.getDescription())
-                .eventDate(newEventDto.getEventDate())
+        Event event = new Event();
+        event.setAnnotation(newEventDto.getAnnotation());
+        event.setDescription(newEventDto.getDescription());
+        event.setEventDate(newEventDto.getEventDate());
 
-                .paid(
-                        newEventDto.getPaid() != null
-                                ? newEventDto.getPaid()
-                                : false
-                )
+        event.setPaid(
+                newEventDto.getPaid() != null
+                        ? newEventDto.getPaid()
+                        : false
+        );
 
-                .participantLimit(
-                        newEventDto.getParticipantLimit() != null
-                                ? newEventDto.getParticipantLimit()
-                                : 0
-                )
+        event.setParticipantLimit(
+                newEventDto.getParticipantLimit() != null
+                        ? newEventDto.getParticipantLimit()
+                        : 0
+        );
 
-                .requestModeration(
-                        newEventDto.getRequestModeration() != null
-                                ? newEventDto.getRequestModeration()
-                                : true
-                )
+        event.setRequestModeration(
+                newEventDto.getRequestModeration() != null
+                        ? newEventDto.getRequestModeration()
+                        : true
+        );
 
-                .title(newEventDto.getTitle())
-                .category(category)
-                .initiator(initiator)
-                .location(LocationMapper.toEntity(newEventDto.getLocation()))
-                .build();
+        event.setTitle(newEventDto.getTitle());
+        event.setCategory(category);
+        event.setInitiator(initiator);
+        event.setLocation(LocationMapper.toEntity(newEventDto.getLocation()));
+
+        return event;
     }
 }

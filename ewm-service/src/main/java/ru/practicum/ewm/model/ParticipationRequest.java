@@ -1,12 +1,16 @@
 package ru.practicum.ewm.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.practicum.ewm.model.enums.RequestStatus;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "requests")
 public class ParticipationRequest {
