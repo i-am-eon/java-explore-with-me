@@ -154,8 +154,11 @@ public class PrivateEventServiceImpl implements PrivateEventService {
         }
 
         if (request.getStateAction() != null) {
+
             switch (request.getStateAction()) {
+
                 case SEND_TO_REVIEW -> event.setState(EventState.PENDING);
+
                 case CANCEL_REVIEW -> event.setState(EventState.CANCELED);
             }
         }

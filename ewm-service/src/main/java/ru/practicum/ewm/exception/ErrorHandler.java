@@ -17,67 +17,66 @@ public class ErrorHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiError handleNotFound(NotFoundException e) {
 
-        ApiError apiError = new ApiError();
-        apiError.setMessage(e.getMessage());
-        apiError.setReason("Объект не существует");
-        apiError.setStatus(HttpStatus.NOT_FOUND.name());
-        apiError.setTimestamp(LocalDateTime.now());
-
-        return apiError;
+        return ApiError.builder()
+                .message(e.getMessage())
+                .reason("Объект не существует")
+                .status(HttpStatus.NOT_FOUND.name())
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 
     @ExceptionHandler(ValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleValidation(ValidationException e) {
 
-        ApiError apiError = new ApiError();
-        apiError.setMessage(e.getMessage());
-        apiError.setReason("Ошибка валидации");
-        apiError.setStatus(HttpStatus.BAD_REQUEST.name());
-        apiError.setTimestamp(LocalDateTime.now());
-
-        return apiError;
+        return ApiError.builder()
+                .message(e.getMessage())
+                .reason("Ошибка валидации")
+                .status(HttpStatus.BAD_REQUEST.name())
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 
     @ExceptionHandler(ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConflict(ConflictException e) {
 
-        ApiError apiError = new ApiError();
-        apiError.setMessage(e.getMessage());
-        apiError.setReason("Конфликт данных");
-        apiError.setStatus(HttpStatus.CONFLICT.name());
-        apiError.setTimestamp(LocalDateTime.now());
-
-        return apiError;
+        return ApiError.builder()
+                .message(e.getMessage())
+                .reason("Конфликт данных")
+                .status(HttpStatus.CONFLICT.name())
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
-        ApiError apiError = new ApiError();
-        apiError.setMessage("Ошибка валидации");
-        apiError.setReason("Некорректные параметры запроса");
-        apiError.setStatus(HttpStatus.BAD_REQUEST.name());
-        apiError.setTimestamp(LocalDateTime.now());
-        apiError.setErrors(
-                e.getBindingResult()
-                        .getFieldErrors()
-                        .stream()
-                        .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                        .toList()
-        );
-        return apiError;
+
+        return ApiError.builder()
+                .message("Ошибка валидации")
+                .reason("Некорректные параметры запроса")
+                .status(HttpStatus.BAD_REQUEST.name())
+                .timestamp(LocalDateTime.now())
+                .errors(
+                        e.getBindingResult()
+                                .getFieldErrors()
+                                .stream()
+                                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                                .toList()
+                )
+                .build();
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleNotReadable(HttpMessageNotReadableException e) {
-        ApiError apiError = new ApiError();
-        apiError.setMessage(e.getMostSpecificCause().getMessage());
-        apiError.setReason("Ошибка чтения JSON");
-        apiError.setStatus(HttpStatus.BAD_REQUEST.name());
-        apiError.setTimestamp(LocalDateTime.now());
-        return apiError;
+
+        return ApiError.builder()
+                .message(e.getMostSpecificCause().getMessage())
+                .reason("Ошибка чтения JSON")
+                .status(HttpStatus.BAD_REQUEST.name())
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 }

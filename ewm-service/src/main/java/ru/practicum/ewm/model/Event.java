@@ -1,12 +1,14 @@
 package ru.practicum.ewm.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import ru.practicum.ewm.model.enums.EventState;
 
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @Entity
 @Table(name = "events")
 public class Event {
@@ -20,6 +22,7 @@ public class Event {
 
     @Column(length = 7000)
     private String description;
+
     private LocalDateTime createdOn;
     private LocalDateTime eventDate;
     private LocalDateTime publishedOn;

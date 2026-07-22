@@ -19,7 +19,6 @@ public class PublicCategoryController {
             @RequestParam(defaultValue = "0") int from,
             @RequestParam(defaultValue = "10") int size
     ) {
-
         return categoryService.getCategories(from,size);
     }
 

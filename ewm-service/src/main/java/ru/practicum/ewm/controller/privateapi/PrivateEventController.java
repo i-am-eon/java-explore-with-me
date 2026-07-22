@@ -23,13 +23,11 @@ public class PrivateEventController {
             @PathVariable Long userId,
             @RequestParam(defaultValue = "0") int from,
             @RequestParam(defaultValue = "10") int size) {
-
         return privateEventService.getUserEvents(userId, from, size);
     }
 
     @GetMapping("/{eventId}")
     public EventFullDto getUserEvent(@PathVariable("userId") Long userId, @PathVariable("eventId") Long eventId) {
-
         return privateEventService.getUserEvent(userId, eventId);
     }
 

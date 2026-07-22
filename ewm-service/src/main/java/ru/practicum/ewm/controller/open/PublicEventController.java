@@ -21,36 +21,26 @@ public class PublicEventController {
 
     @GetMapping
     public List<EventShortDto> getEvents(
-
             @RequestParam(required = false)
             String text,
-
             @RequestParam(required = false)
             List<Long> categories,
-
             @RequestParam(required = false)
             Boolean paid,
-
             @RequestParam(required = false)
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             LocalDateTime rangeStart,
-
             @RequestParam(required = false)
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             LocalDateTime rangeEnd,
-
             @RequestParam(required = false)
             Boolean onlyAvailable,
-
             @RequestParam(required = false)
             EventSort sort,
-
             @RequestParam(defaultValue = "0")
             int from,
-
             @RequestParam(defaultValue = "10")
             int size,
-
             HttpServletRequest request
     ) {
         return publicEventService.getEvents(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size, request);

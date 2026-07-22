@@ -34,7 +34,6 @@ public class AdminUserController {
             @RequestParam(required = false) List<Long> ids,
             @RequestParam(defaultValue = "0") int from,
             @RequestParam(defaultValue = "10") int size) {
-
         return userService.getUsers(ids, from, size);
     }
 }

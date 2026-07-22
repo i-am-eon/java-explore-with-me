@@ -21,7 +21,7 @@ public class ParticipationRequest {
     @ManyToOne
     private User requester;
 
-@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private RequestStatus status;
 
     private LocalDateTime created;

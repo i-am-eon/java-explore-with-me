@@ -133,6 +133,7 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
         List<ParticipationRequest> requests = participationRequestRepository.findAllById(request.getRequestIds());
 
         for (ParticipationRequest r : requests) {
+
             if (!r.getEvent().getId().equals(eventId)) {
                 throw new ConflictException("Заявка не относится к данному событию.");
             }

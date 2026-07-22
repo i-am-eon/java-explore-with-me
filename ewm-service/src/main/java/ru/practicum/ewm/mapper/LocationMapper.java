@@ -6,6 +6,7 @@ import ru.practicum.ewm.model.Location;
 public class LocationMapper {
 
     public static Location toEntity(LocationDto dto) {
+
         if (dto == null) {
             return null;
         }
@@ -13,10 +14,12 @@ public class LocationMapper {
         Location location = new Location();
         location.setLat(dto.getLat());
         location.setLon(dto.getLon());
+
         return location;
     }
 
     public static LocationDto toDto(Location entity) {
+
         if (entity == null) {
             return null;
         }
