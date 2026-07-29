@@ -1,4 +1,4 @@
-package ru.practicum.ewm.controller.open;
+package ru.practicum.ewm.controller.publicapi;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
