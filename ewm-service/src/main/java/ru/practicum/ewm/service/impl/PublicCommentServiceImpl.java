@@ -36,7 +36,7 @@ public class PublicCommentServiceImpl implements PublicCommentService {
     public List<CommentDto> getEventComments(Long eventId, int from, int size) {
 
         if (from < 0 || size <= 0) {
-            throw new ValidationException("Некорректные параметры пагинации.");
+            throw new ValidationException(String.format("Некорректные параметры пагинации: eventId=%d, from=%d, size=%d.", eventId, from, size));
         }
 
         if (!eventRepository.existsById(eventId)) {

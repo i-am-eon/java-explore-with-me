@@ -14,14 +14,13 @@ public class CommentMapper {
             return null;
         }
 
-        CommentDto commentDto = new CommentDto();
-        commentDto.setId(comment.getId());
-        commentDto.setAuthor(UserMapper.toUserShortDto(comment.getAuthor()));
-        commentDto.setText(comment.getText());
-        commentDto.setCreated(comment.getCreated());
-        commentDto.setUpdated(comment.getUpdated());
-
-        return commentDto;
+        return CommentDto.builder()
+                .id(comment.getId())
+                .author(UserMapper.toUserShortDto(comment.getAuthor()))
+                .text(comment.getText())
+                .created(comment.getCreated())
+                .updated(comment.getUpdated())
+                .build();
     }
 
     public static Comment toComment(NewCommentDto newCommentDto, User user, Event event) {
@@ -30,11 +29,10 @@ public class CommentMapper {
             return null;
         }
 
-        Comment comment = new Comment();
-        comment.setAuthor(user);
-        comment.setEvent(event);
-        comment.setText(newCommentDto.getText());
-
-        return comment;
+        return Comment.builder()
+                .author(user)
+                .event(event)
+                .text(newCommentDto.getText())
+                .build();
     }
 }
