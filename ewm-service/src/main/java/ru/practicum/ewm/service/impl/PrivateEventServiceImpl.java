@@ -46,7 +46,7 @@ public class PrivateEventServiceImpl implements PrivateEventService {
     public List<EventShortDto> getUserEvents(Long userId, int from, int size) {
 
         if (from < 0 || size <= 0) {
-            throw new ValidationException("Некорректные параметры пагинации.");
+            throw new ValidationException(String.format("Некорректные параметры пагинации: userId=%d, from=%d, size=%d.", userId, from, size));
         }
 
         if (!userRepository.existsById(userId)) {
